@@ -1,0 +1,21 @@
+# Node modules, jangan ikut upload karena besar dan bisa diinstall ulang
+node_modules/
+
+# File environment, biasanya berisi rahasia (API key, password, dll)
+.env
+
+# File log
+logs
+*.log
+npm-debug.log*
+
+# Folder build (kalau ada)
+dist/
+build/
+
+# MacOS files (kalau kamu pakai Mac)
+.DS_Store
+
+# Editor config (opsional)
+.vscode/
+.idea/
