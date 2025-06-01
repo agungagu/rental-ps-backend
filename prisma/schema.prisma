@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StatusPS {
+  tersedia
+  digunakan
+}
+
+enum StatusTransaksi {
+  berlangsung
+  selesai
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}
+
+model Playstation {
+  id        Int         @id @default(autoincrement())
+  nama      String
+  status    String      @default("tersedia")
+  harga     Int
+  transaksi Transaksi[]
+}
+
+model Transaksi {
+  id             Int         @id @default(autoincrement())
+  nama_pelanggan String
+  waktu_mulai    DateTime    @default(now())
+  waktu_selesai  DateTime?
+  durasi         Int?
+  total_harga    Int?
+  status         String      @default("berlangsung")
+  playstation    Playstation @relation(fields: [playstationId], references: [id])
+  playstationId  Int
+}
